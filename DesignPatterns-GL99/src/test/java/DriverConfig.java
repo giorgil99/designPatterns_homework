@@ -6,10 +6,7 @@ import java.nio.file.Paths;
 public class DriverConfig {
 
 
-
-
-
-    public static void  Config () {
+    public static void Config() {
 
         Configuration.browser = "Edge";
         Configuration.startMaximized = true;
@@ -21,11 +18,6 @@ public class DriverConfig {
 
 
     }
-
-
-
-
-
 
 
 }
