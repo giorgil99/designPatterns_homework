@@ -13,14 +13,24 @@ public class PractiseFormsTest {
     @Test(dataProvider = "filler")
     public void MainTest(String firstName, String lastName, int gender, String mobileNumber) {
         GetWebConnection.ConnectToPage();
-        FindElements ElementsAndActions = new FindElements();
-        ElementsAndActions.ElementsAndActionsClicks();
-        ElementsAndActions.ElementsAndActionsFills(firstName, lastName, gender, mobileNumber);
+
+        FindElements1 ElementsAndActions1 = new FindElements1();
+        ElementsAndActions1.FormsClicks();
+        ElementsAndActions1.PracticeFormClick();
+
+        FindElements2 ElementsAndActions2 = new FindElements2();
+        ElementsAndActions2.SetDataForFills(firstName, lastName, gender, mobileNumber);
+
+        ElementsAndActions2.SetFirstName();
+        ElementsAndActions2.SetLastName();
+        ElementsAndActions2.SetGender();
+        ElementsAndActions2.SetMobileNumber();
+        ElementsAndActions2.Submit();
 
 //        Check that 'Thanks for submitting the form' text is visible
-        ElementsAndActions.AssertVisibility().shouldBe(Condition.visible);
+        ElementsAndActions2.AssertVisibility().shouldBe(Condition.visible);
 //        Check that student info is correct
-        ElementsAndActions.AssertInfo().shouldBe(Condition.exactText(firstName + " " + lastName));
+        ElementsAndActions2.AssertInfo().shouldBe(Condition.exactText(firstName + " " + lastName));
 
 
     }

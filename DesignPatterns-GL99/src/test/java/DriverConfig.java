@@ -10,7 +10,7 @@ public class DriverConfig {
 
         Configuration.browser = "Edge";
         Configuration.startMaximized = true;
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = false;
         Path root = Paths.get(".").normalize().toAbsolutePath();
         Configuration.reportsFolder = root + "\\src\\main\\resources\\Reports";
         Configuration.savePageSource = false;
