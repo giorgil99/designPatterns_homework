@@ -1,4 +1,6 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -30,7 +32,7 @@ public class FindElements extends PractiseFormsTest {
     }
 
 
-    public void ElementsAndActionsFills(String firstName, String lastName, int gender, String mobileNumber) throws InterruptedException {
+    public void ElementsAndActionsFills(String firstName, String lastName, int gender, String mobileNumber) {
 //        Fill First Name, Last Name , Gender and mobile number
         $(firstNameCss).sendKeys(firstName);
         $(lastNameCss).sendKeys(lastName);
@@ -38,16 +40,23 @@ public class FindElements extends PractiseFormsTest {
         $(mobileNumberCss).sendKeys(mobileNumber);
         $(submit).scrollIntoView(true);
         $(submit).click();
-//        Check that 'Thanks for submitting the form' text is visible
+
+
+    }
+
+    public SelenideElement AssertVisibility() {
+        //        Check that 'Thanks for submitting the form' text is visible
         $(visibleText).scrollIntoView(true);
-        $(visibleText).shouldBe(Condition.visible);
-        Thread.sleep(2000);
-//          Check that student info is correct
+        return $(visibleText);
+
+
+    }
+
+    public SelenideElement AssertInfo() {
+
         $(checkInfo).scrollIntoView(true);
         System.out.println("Student info: " + $(checkInfo).getText());
-        $(checkInfo).shouldBe(Condition.exactText(firstName + " " + lastName));
-
-
+        return $(checkInfo);
     }
 
 
