@@ -2,13 +2,14 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 
-public class FindElements extends PractiseFormsTest {
+public class FindElements2 {
 
-    By forms = By.cssSelector("div.home-body > div > div:nth-child(2)");
-    By practiceForm = By.cssSelector("div.element-list.collapse.show");
+    private static String SFirstName;
+    private static String SLastName;
+    private static int SGender;
+    private static String SMobileNumber;
 
     By firstNameCss = By.cssSelector("#firstName");
     By lastNameCss = By.cssSelector("#lastName");
@@ -18,29 +19,35 @@ public class FindElements extends PractiseFormsTest {
     By visibleText = By.cssSelector("#example-modal-sizes-title-lg");
     By checkInfo = By.cssSelector("tbody > tr:nth-child(1) > td:nth-child(2)");
 
-    public void ElementsAndActionsClicks() {
-        $(forms).scrollIntoView(true);
-        $(forms).click();
-//        Click on 'Forms'
-        switchTo().defaultContent();
-//        Click on 'Practice Form'
-        $(practiceForm).scrollIntoView(true);
-        $(practiceForm).click();
-
+    public void SetDataForFills(String firstName, String lastName, int gender, String mobileNumber) {
+//        Fill First Name, Last Name , Gender and mobile number
+        SFirstName = firstName;
+        SLastName = lastName;
+        SGender = gender;
+        SMobileNumber = mobileNumber;
     }
 
+    public void SetFirstName() {
+        $(firstNameCss).sendKeys(SFirstName);
+    }
 
-    public void ElementsAndActionsFills(String firstName, String lastName, int gender, String mobileNumber) {
-//        Fill First Name, Last Name , Gender and mobile number
-        $(firstNameCss).sendKeys(firstName);
-        $(lastNameCss).sendKeys(lastName);
-        $(genderCss, gender).click();
-        $(mobileNumberCss).sendKeys(mobileNumber);
+    public void SetLastName() {
+        $(lastNameCss).sendKeys(SLastName);
+    }
+
+    public void SetGender() {
+        $(genderCss, SGender).click();
+    }
+
+    public void SetMobileNumber() {
+        $(mobileNumberCss).sendKeys(SMobileNumber);
+    }
+
+    public void Submit() {
         $(submit).scrollIntoView(true);
         $(submit).click();
-
-
     }
+
 
     public SelenideElement AssertVisibility() {
         //        Check that 'Thanks for submitting the form' text is visible
@@ -59,3 +66,4 @@ public class FindElements extends PractiseFormsTest {
 
 
 }
+
