@@ -10,7 +10,7 @@ public class PractiseFormsTest {
         return GetDataForFills.creatObject();
     }
 
-    @Test(dataProvider = "filler")
+    @Test(dataProvider = "filler",groups = {"ListenerTestGroup"},invocationCount =1 )
     public void MainTest(String firstName, String lastName, int gender, String mobileNumber) {
         GetWebConnection.ConnectToPage();
 
