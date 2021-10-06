@@ -3,11 +3,17 @@ package PageFactoryAndFluentAPI;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import static com.codeborne.selenide.Selenide.open;
+
+@Listeners(LocalListenerAllureFailedCase.class)
 public class PageFactoryMainTest {
 
     public static String trueGender;
+
 
     @DataProvider(name = "filler")
     public Object[][] getDataFromDataProvider() {
@@ -56,4 +62,31 @@ public class PageFactoryMainTest {
                 .checkInfoMobile(mobileNumber);
 
     }
+
+
+    @Test
+    @Epic("helper test2 state")
+    @Feature("helper test run")
+    @Story("helper test now")
+    @Severity(SeverityLevel.MINOR)
+    @Description("Helper test for failed case")
+    public void failTest()
+    {
+
+
+        open("https://duckduckgo.com/?t=opera");
+        SoftAssert softAssert = new SoftAssert() ;
+        softAssert.fail();
+
+//        Attachments attach = new Attachments() ;
+//        attach.saveScreenshot(Selenide.screenshot(OutputType.BYTES));
+
+        softAssert.assertAll();
+
+
+
+    }
+
+
+
 }
