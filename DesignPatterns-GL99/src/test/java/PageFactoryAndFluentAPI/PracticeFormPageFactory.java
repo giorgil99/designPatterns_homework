@@ -1,6 +1,7 @@
 package PageFactoryAndFluentAPI;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,14 +31,7 @@ public class PracticeFormPageFactory {
     WebElement userNumber;
     @FindBy(how = How.CSS, css = "#submit")
     WebElement submit;
-    @FindBy(how = How.CSS, css = "#example-modal-sizes-title-lg")
-    WebElement visibleText;
-    @FindBy(how = How.CSS, css = "tbody > tr:nth-child(1) > td:nth-child(2)")
-    WebElement checkInfoName;
-    @FindBy(how = How.CSS, css = "tbody > tr:nth-child(3) > td:nth-child(2)")
-    WebElement checkInfoGender;
-    @FindBy(how = How.CSS, css = "tbody > tr:nth-child(4) > td:nth-child(2)")
-    WebElement checkInfoMobile;
+
 
 
     public void clickPracticeForm() {
@@ -52,15 +46,15 @@ public class PracticeFormPageFactory {
         SGender = gender;
         SMobileNumber = mobileNumber;
     }
-
+    @Step
     public void sendFirstName() {
         $(firstName).sendKeys(SFirstName);
     }
-
+    @Step
     public void sendLastName() {
         $(lastName).sendKeys(SLastName);
     }
-
+    @Step
     public void sendGender() {
         if (SGender == 0) {
             $(gender1).click();
@@ -70,39 +64,16 @@ public class PracticeFormPageFactory {
             System.out.println("Gender selection issue! ");
         }
     }
-
+    @Step
     public void sendMobileNumber() {
         $(userNumber).sendKeys(SMobileNumber);
     }
-
+    @Step
     public void clickSubmit() {
         $(submit).scrollIntoView(true);
         $(submit).click();
     }
 
-    //   implementing Fluent API
-    public SelenideElement AssertVisibility() {
-        //        Check that 'Thanks for submitting the form' text is visible
-        $(visibleText).scrollIntoView(true);
-        return $(visibleText);
-    }
-
-    public SelenideElement checkInfoName() {
-        $(checkInfoName).scrollIntoView(true);
-        System.out.println("Student info: " + $(checkInfoName).getText());
-        return $(checkInfoName);
-    }
-
-    public SelenideElement checkInfoGender() {
-        $(checkInfoGender).scrollIntoView(true);
-        System.out.println("Student gender: " + $(checkInfoGender).getText());
-        return $(checkInfoGender);
-    }
-    public SelenideElement checkInfoMobile() {
-        $(checkInfoMobile).scrollIntoView(true);
-        System.out.println("Student mobile: " + $(checkInfoMobile).getText());
-        return $(checkInfoMobile);
-    }
 
 
     public PracticeFormPageFactory(WebDriver driver) {

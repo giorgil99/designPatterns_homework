@@ -1,5 +1,6 @@
 package PageFactoryAndFluentAPI;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class FormsPageFactory {
     @FindBy(how = How.CSS, css = "div.home-body > div > div:nth-child(2)")
     WebElement forms;
 
-
+    @Step
     public void clickFroms() {
         $(forms).scrollIntoView(true);
         $(forms).click();
