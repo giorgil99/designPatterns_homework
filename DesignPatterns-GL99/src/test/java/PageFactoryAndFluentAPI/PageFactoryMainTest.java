@@ -1,12 +1,13 @@
 package PageFactoryAndFluentAPI;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class PageFactoryMainTest {
 
+    public static String trueGender;
 
     @DataProvider(name = "filler")
     public Object[][] getDataFromDataProvider() {
@@ -14,7 +15,12 @@ public class PageFactoryMainTest {
     }
 
 
-    @Test(dataProvider = "filler")
+    @Test(dataProvider = "filler",description ="this discretion is already set at @Description" )
+    @Epic("main test state")
+    @Feature("main test run")
+    @Story("main test now")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Main test for allure")
     public void MainTest(String firstName, String lastName, int gender, String mobileNumber) {
         GetWebConnection.ConnectToPage();
 //          Click on 'Forms'
@@ -30,20 +36,24 @@ public class PageFactoryMainTest {
         practicePage.sendGender();
         practicePage.sendMobileNumber();
         practicePage.clickSubmit();
-//        Check that 'Thanks for submitting the form' text is visible
-        practicePage.AssertVisibility().shouldBe(Condition.visible);
-//        Check that student info is correct
-        practicePage.checkInfoName().shouldBe(Condition.exactText(firstName + " " + lastName));
 
+//        logic to determine trueGender !
         if (gender == 0) {
-            practicePage.checkInfoGender().shouldBe(Condition.exactText("Male"));
+            trueGender = "Male";
         } else if (gender == 1) {
-            practicePage.checkInfoGender().shouldBe(Condition.exactText("Female"));
+            trueGender = "Female";
         } else {
             System.out.println("Main Test gender assertion error!");
         }
+        //        Check that 'Thanks for submitting the form' text is visible
+        //        Check that student info is correct
 
-        practicePage.checkInfoMobile().shouldBe(Condition.exactText(mobileNumber));
+        FluentAPIImplementation fluentApi = new FluentAPIImplementation();
+        fluentApi
+                .AssertVisibility()
+                .checkInfoName(firstName + " " + lastName)
+                .checkInfoGender(trueGender)
+                .checkInfoMobile(mobileNumber);
 
     }
 }
