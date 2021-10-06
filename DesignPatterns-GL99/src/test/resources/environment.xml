@@ -1,0 +1,14 @@
+<environment>
+    <parameter>
+        <key>Browser</key>
+        <value>Edge</value>
+    </parameter>
+    <parameter>
+        <key>Browser.Version</key>
+        <value>95.0</value>
+    </parameter>
+    <parameter>
+        <key>TestByGL99</key>
+        <value>Production</value>
+    </parameter>
+</environment>
